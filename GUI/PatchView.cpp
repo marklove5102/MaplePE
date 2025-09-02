@@ -52,7 +52,7 @@ void PatchView::OnBnClickedInjectDllButton()
 		std::wstring input(pidText);
 		DWORD pid = static_cast<DWORD>(std::stoul(input));
 		if (pid <= 0) {
-			MBError(L"Invaild process id");
+			MBError(L"Invalid process id");
 			return;
 		}
 		std::wstring err = m_patchController->InjectDLL(pid);
@@ -63,7 +63,7 @@ void PatchView::OnBnClickedInjectDllButton()
 		MBInfo(L"Inject dll ok");
 	}
 	catch (const std::exception e) {
-		MBError(L"Invaild process id");
+		MBError(L"Invalid process id");
 	}
 
 }

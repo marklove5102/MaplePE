@@ -45,8 +45,8 @@ namespace Hook {
 			}
 		}
 		// Filter Opcodes
-		CInPacket::InitFilterOpcodeSet(s.CInPacketFilterOpcodes);
-		COutPacket::InitFilterOpcodeSet(s.COutPacketFilterOpcodes);
+		CInPacket::UpdateFilterOpcodeSet(s.CInPacketFilterOpcodes);
+		COutPacket::UpdateFilterOpcodeSet(s.COutPacketFilterOpcodes);
 		// CInPacket::Decode1
 		SADDR(&CInPacket::Decode1, s.CInPacketDecode1Addr);
 		SHOOK(true, &CInPacket::Decode1, CInPacket::Decode1_Hook);
@@ -99,7 +99,7 @@ namespace Hook {
 		SADDR(&CClientSocket::SendPacket, s.CClientSocketSendPacketAddr);
 		//SHOOK(true, &CClientSocket::SendPacket, CClientSocket::SendPacket_Hook);
 		// Router Init
-		Router::Init(s.LoggingServerIP, static_cast<uint16_t>(s.LoggingServerPort));
+		Router::Init(s.GUIServerIP, static_cast<uint16_t>(s.GUIServerPort));
 	}
 
 	void Uninstall() {

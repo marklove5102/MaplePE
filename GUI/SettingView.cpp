@@ -11,8 +11,8 @@ namespace {
 	const std::vector<std::wstring> kSettingPropName{
 		L"GameProcessName",
 		L"PacketDllName",
-		L"LoggingServerIP",
-		L"LoggingServerPort",
+		L"GUIServerIP",
+		L"GUIServerPort",
 		L"IsTypeHeader1Byte",
 		L"CInPacketFilterOpcodes (optional)",
 		L"COutPacketFilterOpcodes (optional)",

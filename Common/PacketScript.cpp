@@ -112,6 +112,12 @@ namespace PacketScript {
 		return segment;
 	}
 
+	Opcode DecodeOp(const std::vector<uint8_t>& buffer, size_t& pos)
+	{
+		uint16_t op = Decode2(buffer, pos);
+		return static_cast<Opcode>(op);
+	}
+
 	uint8_t Decode1(const std::vector<uint8_t>& buffer, size_t& pos) {
 		if (pos + 1 > buffer.size()) {
 			return 0;
@@ -168,6 +174,8 @@ namespace PacketScript {
 		return {};
 	}
 
+
+
 	std::wstring DecodeStr(const std::vector<uint8_t>& buffer, size_t& pos, size_t& uSize) {
 		uSize = Decode2(buffer, pos);
 		if (uSize == 0 || pos + uSize > buffer.size()) {
@@ -177,6 +185,12 @@ namespace PacketScript {
 		std::wstring wstr = MultiByte2WideChar(pStr, uSize);
 		pos += uSize;
 		return wstr;
+	}
+
+	std::wstring DecodeStr(const std::vector<uint8_t>& buffer, size_t& pos)
+	{
+		size_t uSize = 0;
+		return DecodeStr(buffer, pos, uSize);
 	}
 
 	std::wstring DecodeBuffer(const std::vector<uint8_t>& buffer, size_t& pos, size_t uSize) {
@@ -208,6 +222,12 @@ namespace PacketScript {
 			pos += uSize;
 			return isDifferent ? std::wstring() : std::to_wstring(static_cast<int8_t>(firstValue));
 		}
+	}
+
+	void EncodeOp(std::vector<uint8_t>& buffer, Opcode value)
+	{
+		uint16_t op = static_cast<uint16_t>(value);
+		Encode2(buffer, op);
 	}
 
 	void Encode1(std::vector<uint8_t>& buffer, uint8_t value) {
@@ -251,6 +271,12 @@ namespace PacketScript {
 		const char* pStr = str.c_str();
 		const uint8_t* p = reinterpret_cast<const uint8_t*>(pStr);
 		buffer.insert(buffer.end(), p, p + uSize);
+	}
+
+	void EncodeStr(std::vector<uint8_t>& buffer, const std::wstring& wstr)
+	{
+		size_t uSize = 0;
+		EncodeStr(buffer, wstr, uSize);
 	}
 
 	void EncodeBuffer(std::vector<uint8_t>& buffer, const std::wstring& data, size_t uSize) {

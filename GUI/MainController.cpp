@@ -5,8 +5,8 @@
 MainController::MainController(MainView* view) {
 	m_mainView = view;
 	m_exeDir = GetExecutableDir(NULL);
-	m_loggingServer = new LoggingServer(this);
-	m_loggingServer->Run();
+	m_GUIServer = new GUIServer(this);
+	m_GUIServer->Run();
 
 	bool loadOK = LoadSetting(m_exeDir, m_setting);
 	if (!loadOK) {
@@ -19,8 +19,8 @@ MainController::MainController(MainView* view) {
 
 MainController::~MainController()
 {
-	delete(m_loggingServer);
-	m_loggingServer = nullptr;
+	delete(m_GUIServer);
+	m_GUIServer = nullptr;
 }
 
 const Setting& MainController::GetSetting()
@@ -33,6 +33,9 @@ bool MainController::SetSetting(const Setting& s)
 	bool ok = SaveSetting(m_exeDir, s);
 	if (!ok) {
 		return false;
+	}
+	if (s.CInPacketFilterOpcodes != m_setting.CInPacketFilterOpcodes || s.COutPacketFilterOpcodes != m_setting.COutPacketFilterOpcodes) {
+		m_GUIServer->BroadcastFilterOpcodes(s.CInPacketFilterOpcodes, s.COutPacketFilterOpcodes);
 	}
 	m_setting = s;
 	return true;
@@ -78,16 +81,16 @@ std::wstring MainController::SendData(const int pid, const bool isInPacket, cons
 {
 	PacketLogModel log(pid, isInPacket, data);
 	if (pid == 0) {
-		return m_loggingServer->BroadcastPacketInfo(log);
+		return m_GUIServer->BroadcastPacketInfo(log);
 	}
-	return m_loggingServer->NotifyPacketInfo(log);
+	return m_GUIServer->SendPacketInfo(log);
 }
 
 std::wstring MainController::SendFormatData(int logID, const std::wstring& data)
 {
 	PacketLogModel log = this->GetPacketLogModel(logID);
 	log.SetData(data);
-	return m_loggingServer->NotifyPacketInfo(log);
+	return m_GUIServer->SendPacketInfo(log);
 }
 
 void MainController::ClearPacketLogModel()

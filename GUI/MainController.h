@@ -1,9 +1,9 @@
 #pragma once
 #include "IMainController.h"
-#include "LoggingServer.h"
+#include "GUIServer.h"
 
 class MainView;
-class LoggingServer;
+class GUIServer;
 
 class MainController final : public IMainController {
 public:
@@ -21,9 +21,8 @@ public:
 	void ClearPacketLogModel();
 private:
 	Setting m_setting;
-
 	std::wstring m_exeDir = L"";
 	MainView* m_mainView = nullptr;
-	LoggingServer* m_loggingServer = nullptr;
+	GUIServer* m_GUIServer = nullptr;
 	std::vector<PacketLogModel> m_packetLogModels;
 };

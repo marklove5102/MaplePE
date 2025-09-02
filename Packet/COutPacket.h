@@ -11,7 +11,7 @@ typedef struct {
 
 namespace COutPacket {
 
-	void InitFilterOpcodeSet(std::wstring& opcodes);
+	void UpdateFilterOpcodeSet(std::wstring& opcodes);
 
 	bool IsFilterOpcode(uint16_t opcode);
 

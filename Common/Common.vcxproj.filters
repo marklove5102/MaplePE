@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PacketFormat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UDPClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,6 +36,12 @@
     <ClInclude Include="WSAData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PacketEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Opcode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UDPClient.cpp">
@@ -54,9 +57,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PacketScript.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PacketFormat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Router.h"
 #include "CClientSocket.h"
-#include "LoggingClient.h"
+#include "GUIClient.h"
 
 namespace {
-	static LoggingClient* gLoggingClient = nullptr;
+	static GUIClient* gGUIClient = nullptr;
 }
 
 namespace Router {
@@ -14,24 +14,25 @@ namespace Router {
 	void* gClientSocketPtr = nullptr;
 
 	void Init(const std::wstring& serverIP, const uint16_t serverPort) {
-		if (gLoggingClient != nullptr) {
-			DEBUGW(L"LoggingClient already initialized");
+		if (gGUIClient != nullptr) {
+			DEBUGW(L"GUIClient already initialized");
 			return;
 		}
-		gLoggingClient = new LoggingClient(serverIP, serverPort);
-		gLoggingClient->OnNotify();
+		gGUIClient = new GUIClient(serverIP, serverPort);
+		gGUIClient->Ping(kPID);
+		gGUIClient->OnNotify();
 	}
 
 	void Free() {
-		delete gLoggingClient;
-		gLoggingClient = nullptr;
+		delete gGUIClient;
+		gGUIClient = nullptr;
 	}
 
 	void SendPacketInfo(PacketInfo& info) {
-		if (gLoggingClient == nullptr) {
+		if (gGUIClient == nullptr) {
 			return;
 		}
-		gLoggingClient->SendPacketInfo(info);
+		gGUIClient->SendPacketInfo(info);
 	}
 
 	void ProcessPacket(void* iPacket) {

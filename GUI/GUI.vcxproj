@@ -172,7 +172,7 @@
     <ClInclude Include="IMainController.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="JumpView.h" />
-    <ClInclude Include="LoggingServer.h" />
+    <ClInclude Include="GUIServer.h" />
     <ClInclude Include="MainController.h" />
     <ClInclude Include="MainView.h" />
     <ClInclude Include="Model.h" />
@@ -204,7 +204,7 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="JumpView.cpp" />
-    <ClCompile Include="LoggingServer.cpp" />
+    <ClCompile Include="GUIServer.cpp" />
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MainView.cpp" />
     <ClCompile Include="PacketFormatModel.cpp" />

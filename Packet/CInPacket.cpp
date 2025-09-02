@@ -15,21 +15,30 @@ namespace {
 
 namespace CInPacket {
 
-	void InitFilterOpcodeSet(std::wstring& opcodes)
+	void UpdateFilterOpcodeSet(std::wstring& opcodes)
 	{
+		std::set<uint16_t> tempSet;
 		std::wstringstream ss(opcodes);
 		std::wstring token;
 
 		while (std::getline(ss, token, L',')) {
 			try {
 				uint16_t opcode = static_cast<uint16_t>(std::stoul(token, nullptr, 0));
-				gFilterOpcodeSet.insert(opcode);
+				tempSet.insert(opcode);
 			}
 			catch (const std::exception&) {
 				DEBUGW(L"Unknown filter opcodes")
 			}
 		}
+
+		if (tempSet.empty()) {
+			DEBUGW(L"Failed to update CInPacketFilterOpcodeSet: no valid opcodes found");
+			return;
+		}
+
+		gFilterOpcodeSet = std::move(tempSet);
 	}
+
 
 	bool IsFilterOpcode(uint16_t opcode)
 	{

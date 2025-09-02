@@ -39,7 +39,7 @@
     <ClCompile Include="CClientSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoggingClient.cpp">
+    <ClCompile Include="GUIClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Router.cpp">
@@ -65,7 +65,7 @@
     <ClInclude Include="CClientSocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoggingClient.h">
+    <ClInclude Include="GUIClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Router.h">

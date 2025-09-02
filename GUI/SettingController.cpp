@@ -18,8 +18,8 @@ const std::vector<std::wstring> SettingController::Deserialize(const Setting& s)
 	const std::vector<std::wstring> settings{
 		s.GameProcessName,
 		s.PacketDllName,
-		s.LoggingServerIP,
-		std::to_wstring(s.LoggingServerPort),
+		s.GUIServerIP,
+		std::to_wstring(s.GUIServerPort),
 		std::to_wstring(s.IsTypeHeader1Byte),
 		s.CInPacketFilterOpcodes,
 		s.COutPacketFilterOpcodes,
@@ -60,8 +60,8 @@ const Setting SettingController::Serialize(const std::vector<std::wstring>& prop
 	Setting s{
 		propValues[index],					// GameProcessName
 		propValues[++index],				// PacketDllName
-		propValues[++index],				// LoggingServerIP
-		WSTR2ULONGPTR(propValues[++index]), // LoggingServerPort
+		propValues[++index],				// GUIServerIP
+		WSTR2ULONGPTR(propValues[++index]), // GUIServerPort
 		WSTR2BOOL(propValues[++index]),		// IsTypeHeader1Byte
 		propValues[++index],				// CInPacketFilterOpcodes
 		propValues[++index],				// COutPacketFilterOpcodes

@@ -45,8 +45,8 @@ bool LoadSetting(std::wstring dir, Setting& s) {
 		// Base info
 		SET_WSTR_FIELD(GameProcessName)
 		SET_WSTR_FIELD(PacketDllName)
-		SET_WSTR_FIELD(LoggingServerIP)
-		SET_ADDR_FIELD(LoggingServerPort)
+		SET_WSTR_FIELD(GUIServerIP)
+		SET_ADDR_FIELD(GUIServerPort)
 		SET_BOOL_FIELD(IsTypeHeader1Byte)
 		// Filter Opcodes
 		SET_WSTR_FIELD(CInPacketFilterOpcodes)
@@ -93,8 +93,8 @@ bool SaveSetting(std::wstring dir, const Setting& s) {
 	// Base info
 	wfile << L"GameProcessName=" << s.GameProcessName << L"\n";
 	wfile << L"PacketDllName=" << s.PacketDllName << L"\n";
-	wfile << L"LoggingServerIP=" << s.LoggingServerIP << L"\n";
-	wfile << L"LoggingServerPort=" << s.LoggingServerPort << L"\n";
+	wfile << L"GUIServerIP=" << s.GUIServerIP << L"\n";
+	wfile << L"GUIServerPort=" << s.GUIServerPort << L"\n";
 	wfile << L"IsTypeHeader1Byte=" << s.IsTypeHeader1Byte << L"\n";
 	// Filter Opcodes
 	wfile << L"CInPacketFilterOpcodes=" << s.CInPacketFilterOpcodes << L"\n";

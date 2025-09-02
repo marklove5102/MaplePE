@@ -8,8 +8,8 @@ struct Setting {
 	// Base info
 	std::wstring GameProcessName = L"MapleStory.exe";
 	std::wstring PacketDllName = L"Packet.dll";
-	std::wstring LoggingServerIP = L"127.0.0.1";
-	ULONG_PTR LoggingServerPort = 0xC0DE;
+	std::wstring GUIServerIP = L"127.0.0.1";
+	ULONG_PTR GUIServerPort = 0xC0DE;
 	bool IsTypeHeader1Byte = false;
 
 	// Filter Opcodes

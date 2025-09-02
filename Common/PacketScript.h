@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <vector>
 #include <string>
+#include "Opcode.h"
 
 namespace {
 	const UINT kSystemAnsiCodePage = GetACP();
@@ -32,6 +33,8 @@ namespace PacketScript {
 
 	std::wstring GetHexSegment(const std::wstring& data, size_t& segmentPos, size_t uSize);
 
+	Opcode DecodeOp(const std::vector<uint8_t>& buffer, size_t& pos);
+
 	uint8_t Decode1(const std::vector<uint8_t>& buffer, size_t& pos);
 
 	uint16_t Decode2(const std::vector<uint8_t>& buffer, size_t& pos);
@@ -44,7 +47,11 @@ namespace PacketScript {
 
 	std::wstring DecodeStr(const std::vector<uint8_t>& buffer, size_t& pos, size_t& uSize);
 
+	std::wstring DecodeStr(const std::vector<uint8_t>& buffer, size_t& pos);
+
 	std::wstring DecodeBuffer(const std::vector<uint8_t>& buffer, size_t& pos, size_t uSize);
+
+	void EncodeOp(std::vector<uint8_t>& buffer, Opcode value);
 
 	void Encode1(std::vector<uint8_t>& buffer, uint8_t value);
 
@@ -57,6 +64,8 @@ namespace PacketScript {
 	void EncodeFT(std::vector<uint8_t>& buffer, const std::wstring& timeStr);
 
 	void EncodeStr(std::vector<uint8_t>& buffer, const std::wstring& wstr, size_t& uSize);
+
+	void EncodeStr(std::vector<uint8_t>& buffer, const std::wstring& wstr);
 
 	void EncodeBuffer(std::vector<uint8_t>& buffer, const std::wstring& data, size_t uSize);
 }
